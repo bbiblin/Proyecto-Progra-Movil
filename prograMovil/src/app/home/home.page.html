@@ -1,0 +1,49 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      <img src="./assets/img/Logo_DuocUC.svg.png">
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card-content>
+
+    <div class="login" > 
+      <ion-icon size="large" name="person-circle-outline"></ion-icon>
+    </div>
+
+      <ion-list>
+        <ion-list>
+
+          <div class="user">
+            <ion-input [(ngModel)]="user.username" label="Usuario" label-placement="floating" fill="outline"
+              placeholder="Ingrese su usuario"></ion-input>
+            </div>
+
+          <div class="pass">
+            <ion-input label="Contraseña" label-placement="floating"  fill="outline"[(ngModel)]="user.password" type="password" 
+              placeholder="Ingrese su contraseña">
+            </ion-input>
+        </div>
+
+          <div class="recuerdame">
+            <ion-toggle justify="end">Recuerdame</ion-toggle><br /><br />
+        </div>
+
+          <div class="boton" style="text-align:center">
+          <ion-button  id="boton"(click)="validarLogin()">Ingresar</ion-button><br>
+          <ion-loading trigger="boton" message="Loading..." [duration]="1000" spinner="circles"></ion-loading>
+        </div>
+          
+        </ion-list>
+      </ion-list>
+      <div class="mensaje">
+        <ion-label>{{mensaje}}</ion-label>
+      </div>
+
+  </ion-card-content>
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</ion-content>
