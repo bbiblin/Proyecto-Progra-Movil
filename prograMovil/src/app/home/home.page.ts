@@ -24,25 +24,27 @@ export class HomePage {
 
   validarLogin() {
     if (this.user.username.length != 0) {
-      if (this.user.password.length != 0) {
-        this.mensaje = 'Acceso concedido';
-        let navigationExtras: NavigationExtras = {
-          state: {
-            username: this.user.username,
-            password: this.user.password,
-          },
-        };
-        this.router.navigate(['bienvenida'], navigationExtras);
+      if (this.user.username.length <= 8) {
+        if (this.user.password.length >= 8) {
+          this.mensaje = 'Acceso concedido';
+          let navigationExtras: NavigationExtras = {
+            state: {
+              username: this.user.username,
+              password: this.user.password,
+            },
+          };
+          this.router.navigate(['bienvenida'], navigationExtras);
+        } else {
+          console.log('Contraseña inválida, debe tener al menos 8 caracteres');
+          this.mensaje = 'Contraseña inválida, debe tener al menos 8 caracteres';
+        }
       } else {
-        console.log('Contraseña invalida');
-        this.mensaje = 'Contraseña invalida';
-        //No funciona
+        console.log('Usuario inválido, debe tener un máximo de 8 caracteres');
+        this.mensaje = 'Usuario inválido, debe tener un máximo de 8 caracteres';
       }
     } else {
-      console.log('Usuario invalido');
-      this.mensaje = 'Usuario invalido';
-
+      console.log('Usuario inválido');
+      this.mensaje = 'Usuario inválido';
     }
   }
-}
-
+}  

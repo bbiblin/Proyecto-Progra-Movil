@@ -1,5 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
+import { Component } from '@angular/core';
+import { trigger, state, style, transition, animate } from '@angular/animations';
+
 
 import { HomePage } from './home.page';
 

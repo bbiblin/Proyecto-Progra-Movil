@@ -35,3 +35,11 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
+
+  
+  ion-toolbar {
+    --background: rgba(0, 0, 0, 0.466); /* Fondo del toolbar transparente */
+    --box-shadow: none; /* Opcional: elimina la sombra del toolbar si no es deseada */
+  }
+
+  
