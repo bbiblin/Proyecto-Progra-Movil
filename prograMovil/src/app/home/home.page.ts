@@ -10,27 +10,29 @@ import { AnimationController } from '@ionic/angular';
 export class HomePage {
   /*obj para el usuario */
   user = {
-    username:'',
-    password:'',
+    username: '',
+    password: '',
   };
 
   mensaje = '';
-  spinner=false;
+  spinner = false;
+
+  loginvalido = false;
 
   constructor(private router: Router, private animationController: AnimationController) {
   }
 
-validarLogin(){
-  if (this.user.username.length != 0){
-    if (this.user.password.length != 0){
-      this.mensaje = 'Acceso concedido';
-      let navigationExtras: NavigationExtras = {
-        state: {
-          username: this.user.username,
-          password: this.user.password,
-        },
-      };
-      
+  validarLogin() {
+    if (this.user.username.length != 0) {
+      if (this.user.password.length != 0) {
+        this.mensaje = 'Acceso concedido';
+        let navigationExtras: NavigationExtras = {
+          state: {
+            username: this.user.username,
+            password: this.user.password,
+          },
+        };
+        this.router.navigate(['bienvenida'], navigationExtras);
       } else {
         console.log('Contraseña invalida');
         this.mensaje = 'Contraseña invalida';
@@ -39,7 +41,7 @@ validarLogin(){
     } else {
       console.log('Usuario invalido');
       this.mensaje = 'Usuario invalido';
-    
+
     }
   }
 }
