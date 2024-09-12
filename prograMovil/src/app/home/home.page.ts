@@ -8,6 +8,11 @@ import { AnimationController } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+
+  ngAfterContentInit() {
+    this.animarboton(); 
+  }
+
   /*obj para el usuario */
   user = {
     username: '',
@@ -47,4 +52,24 @@ export class HomePage {
       this.mensaje = 'Usuario inválido';
     }
   }
+
+  animarboton() {
+    const button = document.querySelector('#boton');
+    if (button) {
+      const buttonAnimation = this.animationController
+        .create()
+        .addElement(button)
+        .duration(2000)
+        .iterations(Infinity)
+        .keyframes([
+          { offset: 0, transform: 'scale(1)' },
+          { offset: 0.5, transform: 'scale(1.1)' },
+          { offset: 1, transform: 'scale(1)' } 
+        ]);
+      buttonAnimation.play();
+    } else {
+      console.error('Button element not found');
+    }
+  }
+
 }  
