@@ -9,8 +9,8 @@
 
 <ion-content [fullscreen]="true">
   <div id="container">
-    <ion-card justify="center">
-      <ion-card-content>
+    <ion-card>
+      <ion-card-content justify="center">
         <div class="login">
           <ion-icon size="large" name="person-circle-outline"></ion-icon>
         </div>
@@ -42,7 +42,7 @@
       </ion-card-content>
     </ion-card>
 
-    <div class="mensaje">
+    <div class="mensaje" [ngClass]="{ 'show': mensaje }">
       <ion-label>{{mensaje}}</ion-label>
     </div>
   </div>
