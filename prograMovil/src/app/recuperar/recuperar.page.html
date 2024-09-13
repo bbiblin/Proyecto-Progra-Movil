@@ -1,6 +1,9 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>recuperar</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Recuperar contraseña</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -15,12 +18,11 @@
     <ion-card-content>
       <ion-list>
         <div class="user">
-          <ion-input label="Usuario" label-placement="floating" fill="outline"
-            placeholder="Ingrese su usuario"></ion-input>
+          <ion-input label="Usuario" label-placement="floating" fill="outline" placeholder="Ingrese su usuario"></ion-input>
         </div>
 
         <div class="boton" style="text-align:center">
-          <ion-button id="boton" [routerLink]="['/home']">Ingresar</ion-button><br>
+          <ion-button [routerLink]="['/home']">Ingresar</ion-button><br>
         </div>
       </ion-list>
     </ion-card-content>
