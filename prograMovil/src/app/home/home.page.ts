@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { AnimationController } from '@ionic/angular';
+import { AutenticadorService } from '../servicios/autenticador.service';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +11,7 @@ import { AnimationController } from '@ionic/angular';
 export class HomePage {
 
   ngAfterContentInit() {
-    this.animarboton(); 
+    this.animarboton();
   }
 
   /*obj para el usuario */
@@ -24,32 +25,29 @@ export class HomePage {
 
   loginvalido = false;
 
-  constructor(private router: Router, private animationController: AnimationController) {
+  constructor(private router: Router, private animationController: AnimationController, private auth: AutenticadorService) {
   }
 
+
   validarLogin() {
-    if (this.user.username.length != 0) {
-      if (this.user.username.length <= 8) {
-        if (this.user.password.length >= 8) {
-          this.mensaje = 'Acceso concedido';
-          let navigationExtras: NavigationExtras = {
-            state: {
-              username: this.user.username,
-              password: this.user.password,
-            },
-          };
-          this.router.navigate(['bienvenida'], navigationExtras);
-        } else {
-          console.log('Contraseña inválida, debe tener al menos 8 caracteres');
-          this.mensaje = 'Contraseña inválida, debe tener al menos 8 caracteres';
-        }
-      } else {
-        console.log('Usuario inválido, debe tener un máximo de 8 caracteres');
-        this.mensaje = 'Usuario inválido, debe tener un máximo de 8 caracteres';
-      }
+    if (this.auth.login(this.user.username, this.user.password)) {
+      //Funciona
+      this.mensaje = 'Conexion exitosa';
+      let navigationExtras: NavigationExtras = {
+        state: {
+          username: this.user.username,
+          password: this.user.password,
+        },
+      };
+    
+      /* setTimeout = permite generar un pequeño delay para realizar la accion */
+      
+      this.router.navigate(['/bienvenida'], navigationExtras);
+      this.mensaje = "";
+
     } else {
-      console.log('Usuario inválido');
-      this.mensaje = 'Usuario inválido';
+      this.mensaje = 'Error en las credenciales';
+      //No funciona
     }
   }
 
@@ -64,7 +62,7 @@ export class HomePage {
         .keyframes([
           { offset: 0, transform: 'scale(1)' },
           { offset: 0.5, transform: 'scale(1.1)' },
-          { offset: 1, transform: 'scale(1)' } 
+          { offset: 1, transform: 'scale(1)' }
         ]);
       buttonAnimation.play();
     } else {
