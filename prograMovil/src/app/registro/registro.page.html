@@ -21,27 +21,21 @@
               placeholder="Ingrese su usuario"></ion-input>
           </div>
 
+          <div class="correo">
+            <ion-input [(ngModel)]="user.email"label="Correo" label-placement="floating" fill="outline"
+              placeholder="Ingrese su correo"></ion-input>
+          </div>
+
           <div class="pass">
             <ion-input label="Contraseña" label-placement="floating" fill="outline" [(ngModel)]="user.password"
               type="password" placeholder="Ingrese su contraseña"></ion-input>
           </div>
 
-          <div class="recuerdame">
-            <ion-toggle justify="end">Recuerdame</ion-toggle><br /><br />
-          </div>
-
           <div class="boton" style="text-align:center">
-            <ion-button id="boton" (click)="validarLogin()">Ingresar</ion-button><br>
+            <ion-button id="boton" (click)="validarRegistro()">Registrarse</ion-button><br>
             <ion-loading trigger="boton" message="Loading..." [duration]="1000" spinner="circles"></ion-loading>
           </div>
 
-          <div class="boton" style="text-align:center">
-            <a [routerLink]="['/recuperar']" id="boton">Recuperar Contraseña</a><br>
-          </div>
-          <div class="boton" style="text-align:center">
-            <a [routerLink]="['/registro']" id="boton">¿No tienes una cuenta? Regístrate</a><br>
-          </div>
-          
         </ion-list>
       </ion-card-content>
     </ion-card>
@@ -49,8 +43,10 @@
     <div class="mensaje" [ngClass]="{ 'show': mensaje }">
       <ion-label>{{mensaje}}</ion-label>
     </div>
+
   </div>
 
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </ion-content>
+

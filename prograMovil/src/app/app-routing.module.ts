@@ -21,7 +21,11 @@ const routes: Routes = [
     path: 'bienvenida',
     loadChildren: () => import('./bienvenida/bienvenida.module').then( m => m.BienvenidaPageModule),
     canActivate: [authGuard]
+  },  {
+    path: 'registro',
+    loadChildren: () => import('./registro/registro.module').then( m => m.RegistroPageModule)
   },
+
 
 ];
 

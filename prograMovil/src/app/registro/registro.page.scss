@@ -1,0 +1,97 @@
+ion-content {
+    --background: url("/assets/img/bg.jpg") no-repeat center center / cover;
+  
+  }
+  
+  .user, .pass, .correo {
+    margin-bottom: 15px; 
+  }
+  
+  ion-button {
+    --background: #FFB800;
+    --border-radius: 6px;
+    --box-shadow: 0 2px 6px 0 rgb(0, 0, 0, 0.25);
+    --padding-top: 10px;
+    --padding-bottom: 10px;
+    --text-align: center;
+    width: 100%; 
+  }
+  
+  
+  
+  .login {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  ion-toggle {
+    --border-radius: 6px;
+    --box-shadow: 0 2px 6px 0 rgb(255, 255, 255);
+  }
+  
+  .recuerdame {
+    text-align: right;
+    padding-right: 10px;
+  }
+  
+  .mensaje {
+    background: rgba(22, 0, 0, 0.1); /* Fondo rojo claro con algo de transparencia */
+    border: 1px solid rgba(0, 0, 0, 0.3); /* Borde rojo claro */
+    border-radius: 6px;
+    padding: 15px;
+    text-align: center;
+    margin-top: 20px;
+    display: none; /* Inicialmente oculto */
+    margin: 20px
+  }
+  
+  .mensaje.show {
+    display: block;
+  }
+  
+  ion-card {
+    background: rgba(0, 0, 0, 0.466); 
+    border-radius: 10px;
+    box-shadow: 0 2px 6px 0 rgb(0, 0, 0, 0.25);
+    position: relative;
+  }
+  
+  ion-list {
+    padding: 10px;
+    /*background-color: #1A1A1A;*/
+    background-color: rgba(0, 0, 0, 0); 
+    align-items: center;
+    border-radius: 10px;
+  }
+  
+  ion-input {
+    --background: #ffffff;
+    --border-radius: 6px;
+    --box-shadow: 0 2px 6px 0 rgb(0, 0, 0, 0.25);
+    --padding-top: 10px;
+    --padding-bottom: 10px;
+    --text-align: start; /* Alineación del texto */
+    width: calc(100% - 20px); /* Ajustar el ancho al 100% menos el padding */
+    margin: 0 auto; /* Centrar horizontalmente */
+    height: 40px; /* Ajustar la altura */
+  }
+  
+  ion-toggle {
+    --border-radius: 6px;
+    --box-shadow: 0 2px 6px 0 rgb(255, 255, 255);
+    --padding-top: 10px;
+    --padding-bottom: 10px;
+    --text-align: center;
+  
+  }
+  
+  #container {
+    margin: 60px auto; /* Centrar el contenedor horizontalmente y añadir margen */
+    max-width: 500px; /* Ancho máximo del contenedor */
+  }
+  
+  ion-card-content{
+    background: rgba(0, 0, 0, 0); 
+  }
+  
+  

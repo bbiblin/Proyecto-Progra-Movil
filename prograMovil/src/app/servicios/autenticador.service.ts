@@ -10,12 +10,12 @@ export class AutenticadorService {
   constructor() { }
 
   login(user: String, pass: String): boolean {
-    if (user == "pepe" && pass == "pass") {
+    if (user == "prueba" && pass == "prueba") {
       this.connnectionStatus = true;
       return true;
     }
     this.connnectionStatus = false;
-    return false
+    return false;
   }
 
   logout() {
@@ -25,4 +25,16 @@ export class AutenticadorService {
   isConected() {
     return this.connnectionStatus;
   }
-}
+
+    // Método para validar el registro usando credenciales fijas
+    registro(username: String, email: String, password: String): boolean {
+      // Validación contra valores fijos
+      if (username === 'prueba' && email === 'prueba' && password === 'prueba') {
+        this.connnectionStatus = true;
+        return true;
+      } else {
+        this.connnectionStatus = false;
+        return false;
+      }
+    }
+  }
