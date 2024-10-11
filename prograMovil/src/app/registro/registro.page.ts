@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NavigationExtras} from '@angular/router';
+
+import { ToastController } from '@ionic/angular';
 import { AutenticadorService } from 'src/app/servicios/autenticador.service';
 
 @Component({
@@ -15,29 +16,33 @@ export class RegistroPage{
     password: '',
   };
 
-  mensaje = '';
 
-  constructor(private router: Router, private auth: AutenticadorService) {}
+  constructor(private router: Router, private auth: AutenticadorService, private toastController: ToastController) {}
+
+  ngOnInit(){}
 
 
-    validarRegistro() {
-      if (this.auth.registro(this.user.username, this.user.email, this.user.password)) {
-        //Funciona
-        this.mensaje = 'Conexion exitosa';
-        let navigationExtras: NavigationExtras = {
-          state: {
-            username: this.user.username,
-            email: this.user.email,
-            password: this.user.password,
-          },
-        };
-        
-        this.router.navigate(['/bienvenida'], navigationExtras);
-        this.mensaje = "";
-  
-      } else {
-        this.mensaje = 'Error en las credenciales';
-      }
+  async validarRegistro() {
+    this.auth
+      .registro(this.user)
+      .then((res) => {
+        this.router.navigate(['/bienvenida']);
+        return this.toastController.create({
+          message: 'Registrado con éxito',
+          duration: 5000,
+          position: 'bottom',
+        })
+      })
+      .then((toast) => toast.present())
+      .catch((error) => {
+        return this.toastController
+        .create({
+          message: 'Error al registrar',
+          duration: 5000,
+          position: 'bottom',
+        })
+        .then ((toast) => toast.present());
+      });
   }
 }
 

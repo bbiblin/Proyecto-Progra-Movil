@@ -1,40 +1,60 @@
 import { Injectable } from '@angular/core';
+import { StorageService } from './storage.service';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AutenticadorService {
+  estadoConexion: boolean = false;
 
-  connnectionStatus: boolean = false;
+  constructor(private storage: StorageService) { }
+
+  loginDB(user: string, pass: String): Promise<boolean> {
+    return this.storage
+      .get(user)
+      .then((res) => {
+        if (res.password == pass) {
+          this.estadoConexion = true;
+          return true;
+        } else {
+          return false;
+        }
+      })
+      .catch((error) => {
+        console.log('Error en el sistema: ' + error);
+        return false;
+      });
+  }
   
-  constructor() { }
 
   login(user: String, pass: String): boolean {
     if (user == "prueba" && pass == "prueba") {
-      this.connnectionStatus = true;
+      this.estadoConexion = true;
       return true;
     }
-    this.connnectionStatus = false;
+    this.estadoConexion = false;
     return false;
   }
 
   logout() {
-    this.connnectionStatus = false;
+    this.estadoConexion = false;
   }
 
   isConected() {
-    return this.connnectionStatus;
+    return this.estadoConexion;
   }
 
-    // Método para validar el registro usando credenciales fijas
-    registro(username: String, email: String, password: String): boolean {
-      // Validación contra valores fijos
-      if (username === 'prueba' && email === 'prueba' && password === 'prueba') {
-        this.connnectionStatus = true;
-        return true;
-      } else {
-        this.connnectionStatus = false;
+  async registro(user: any):Promise<boolean> {
+    return this.storage.set(user.username, user).then((res: any) => {
+        if (res != null) {
+          return true;
+        }else{
+          return false;
+        }
+      })
+      .catch((error) => {
         return false;
-      }
-    }
+      });
   }
+}
