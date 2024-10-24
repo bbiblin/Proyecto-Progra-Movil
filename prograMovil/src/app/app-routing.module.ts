@@ -21,7 +21,8 @@ const routes: Routes = [
     path: 'bienvenida',
     loadChildren: () => import('./bienvenida/bienvenida.module').then( m => m.BienvenidaPageModule),
     canActivate: [authGuard]
-  },  {
+  },
+  {
     path: 'registro',
     loadChildren: () => import('./registro/registro.module').then( m => m.RegistroPageModule)
   },
@@ -29,7 +30,14 @@ const routes: Routes = [
     path: 'error',
     loadChildren: () => import('./error/error.module').then( m => m.ErrorPageModule)
   },
-
+  {
+    path: 'controller',
+    loadChildren: () => import('./admin/controller/controller.module').then( m => m.ControllerPageModule)
+  },
+  {
+  path: '**',
+    loadChildren: () => import('./error/error.module').then(m => m.ErrorPageModule)
+  },
 
 ];
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { StorageService } from 'src/app/servicios/storage.service';
 
 import { ToastController } from '@ionic/angular';
 import { AutenticadorService } from 'src/app/servicios/autenticador.service';
@@ -9,7 +10,8 @@ import { AutenticadorService } from 'src/app/servicios/autenticador.service';
   templateUrl: './registro.page.html',
   styleUrls: ['./registro.page.scss'],
 })
-export class RegistroPage{
+export class RegistroPage {
+
   user = {
     username: '',
     email: '',
@@ -17,10 +19,13 @@ export class RegistroPage{
   };
 
 
-  constructor(private router: Router, private auth: AutenticadorService, private toastController: ToastController) {}
+  constructor(
+    private auth: AutenticadorService,
+    private router: Router,
+    private toastController: ToastController
+  ) { }
 
-  ngOnInit(){}
-
+  ngOnInit() { }
 
   async validarRegistro() {
     this.auth
@@ -36,12 +41,12 @@ export class RegistroPage{
       .then((toast) => toast.present())
       .catch((error) => {
         return this.toastController
-        .create({
-          message: 'Error al registrar',
-          duration: 5000,
-          position: 'bottom',
-        })
-        .then ((toast) => toast.present());
+          .create({
+            message: 'Error al registrar',
+            duration: 5000,
+            position: 'bottom',
+          })
+          .then((toast) => toast.present());
       });
   }
 }

@@ -3,12 +3,13 @@ import { StorageService } from './storage.service';
 
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AutenticadorService {
+
   estadoConexion: boolean = false;
 
-  constructor(private storage: StorageService) { }
+  constructor(private storage: StorageService) {}
 
   loginDB(user: string, pass: String): Promise<boolean> {
     return this.storage
@@ -29,10 +30,11 @@ export class AutenticadorService {
   
 
   login(user: String, pass: String): boolean {
-    if (user == "prueba" && pass == "prueba") {
+    if (user == 'usuario1' && pass == 'pass123') {
       this.estadoConexion = true;
       return true;
     }
+
     this.estadoConexion = false;
     return false;
   }
@@ -49,7 +51,7 @@ export class AutenticadorService {
     return this.storage.set(user.username, user).then((res: any) => {
         if (res != null) {
           return true;
-        }else{
+        } else{
           return false;
         }
       })

@@ -31,7 +31,9 @@
           </div>
 
           <div class="boton" style="text-align:center">
-            <ion-button id="boton" (click)="validarLogin()">Ingresar</ion-button><br>
+            <!-- <ion-button id="boton" (click)="validarLogin()"> -->
+            <ion-button id="boton" (click)="validar()">
+              Ingresar</ion-button><br>
             <ion-loading trigger="boton" message="Loading..." [duration]="1000" spinner="circles"></ion-loading>
           </div>
 
@@ -41,7 +43,9 @@
           <div class="boton" style="text-align:center">
             <a [routerLink]="['/registro']" id="boton">¿No tienes una cuenta? Regístrate</a><br>
           </div>
-          
+          <ion-button id="boton" [routerLink]="['/controller']">
+            Admin
+          </ion-button>
         </ion-list>
       </ion-card-content>
     </ion-card>

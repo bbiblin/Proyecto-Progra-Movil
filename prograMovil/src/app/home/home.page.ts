@@ -25,10 +25,34 @@ export class HomePage {
 
   loginvalido = false;
 
-  constructor(private router: Router, private animationController: AnimationController, private auth: AutenticadorService) {
+  constructor(
+    private router: Router,
+    private animationController: AnimationController,
+    private auth: AutenticadorService
+  ) { }
+
+  validar() {
+    this.auth
+      .loginDB(this.user.username, this.user.password)
+      .then((res) => {
+        this.mensaje = 'Conexion exitosa';
+        let navigationExtras: NavigationExtras = {
+          state: {
+            username: this.user.username,
+            password: this.user.password,
+          },
+        };
+        setTimeout(() => {
+          this.router.navigate(['/perfil'], navigationExtras);
+          this.mensaje = '';
+        }, 3000);
+      })
+      .catch((error) => {
+        this.mensaje = 'Error en las credenciales';
+      });
   }
 
-
+  /*
   validarLogin() {
     if (this.auth.login(this.user.username, this.user.password)) {
       //Funciona
@@ -39,9 +63,9 @@ export class HomePage {
           password: this.user.password,
         },
       };
-    
-      /* setTimeout = permite generar un pequeño delay para realizar la accion */
-      
+
+      // setTimeout = permite generar un pequeño delay para realizar la accion
+
       this.router.navigate(['/bienvenida'], navigationExtras);
       this.mensaje = "";
 
@@ -50,6 +74,7 @@ export class HomePage {
       //No funciona
     }
   }
+  */
 
   animarboton() {
     const button = document.querySelector('#boton');
