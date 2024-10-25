@@ -1,28 +1,32 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button fill="clear">
-      </ion-back-button>
+      <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
-    <ion-title>CRUD</ion-title>
+    <ion-title>Crud</ion-title>
   </ion-toolbar>
 </ion-header>
 
+<ion-content [fullscreen]="true">
 
-<ion-content>
-  <ion-button color="success" (click)="toggleFormulario()">crear usuario</ion-button>
+  <div class="addUser">
+  <ion-button (click)="toggleFormulario()">Agregar usuario</ion-button>
+ </div>
+
+ <div class="userList">
   <ion-list>
     <ion-item *ngFor="let user of users">
       <ion-label>
-        <h2>{{ user.username }}</h2>
+        <h5>{{ user.username }}</h5>
         <p>Email: {{ user.email }}</p>
       </ion-label>
-      <ion-buttons slot="end">
+      <div class="botones">
         <ion-button color="warning" (click)="seleccionarUsuario(user)">Modificar</ion-button>
         <ion-button color="danger" (click)="eliminarUsuario(user.id)">Eliminar</ion-button>
-      </ion-buttons>
+      </div>
     </ion-item>
   </ion-list>
+</div>
 
   <ion-card *ngIf="mostrarFormulario">
     <ion-card-header>
@@ -68,8 +72,4 @@
   </ion-card>
 </ion-content>
 
-<ion-footer>
-  <ion-toolbar>
-    <ion-title></ion-title>
-  </ion-toolbar>
-</ion-footer>
+

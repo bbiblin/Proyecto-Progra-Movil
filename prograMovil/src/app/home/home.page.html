@@ -1,11 +1,10 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      <img src="./assets/img/Logo_DuocUC.svg.png" alt="Logo">
+      <img src="./assets/img/Logo_DuocUC.svg.png" alt="Logo" />
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
 
 <ion-content [fullscreen]="true">
   <div id="container">
@@ -30,28 +29,30 @@
             <ion-toggle justify="end">Recuerdame</ion-toggle><br /><br />
           </div>
 
-          <div class="boton" style="text-align:center">
-            <!-- <ion-button id="boton" (click)="validarLogin()"> -->
-            <ion-button id="boton" (click)="validar()">
-              Ingresar</ion-button><br>
+          <div class="boton" style="text-align: center">
+            <ion-button id="boton" (click)="validar()"> Ingresar</ion-button><br />
             <ion-loading trigger="boton" message="Loading..." [duration]="1000" spinner="circles"></ion-loading>
           </div>
 
-          <div class="boton" style="text-align:center">
-            <a [routerLink]="['/recuperar']" id="boton">Recuperar Contraseña</a><br>
+          <div class="boton" style="text-align: center">
+            <a [routerLink]="['/recuperar']" id="boton">Recuperar Contraseña</a><br />
           </div>
-          <div class="boton" style="text-align:center">
-            <a [routerLink]="['/registro']" id="boton">¿No tienes una cuenta? Regístrate</a><br>
+
+          <div class="boton" style="text-align: center">
+            <a [routerLink]="['/registro']" id="boton">¿No tienes una cuenta? Regístrate</a><br />
           </div>
-          <ion-button id="boton" [routerLink]="['/controller']">
-            Admin
-          </ion-button>
         </ion-list>
       </ion-card-content>
     </ion-card>
 
-    <div class="mensaje" [ngClass]="{ 'show': mensaje }">
-      <ion-label>{{mensaje}}</ion-label>
+    <div style="text-align: center; margin-top: 10px">
+      <p *ngIf="mensaje" class="mensaje">{{ mensaje }}</p>
+      <!-- Mensaje de éxito o error -->
+    </div>
+    <div>
+      <div class="admin">
+        <button class="boton-adm" [routerLink]="['/controller']">Admin</button>
+      </div>
     </div>
   </div>
 

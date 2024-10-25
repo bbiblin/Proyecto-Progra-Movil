@@ -7,12 +7,6 @@
       "password": "pass1234"
     },
     {
-      "id": 2,
-      "username": "usuario2",
-      "email": "email@gmail.com",
-      "password": "password1234"
-    },
-    {
       "id": 3,
       "username": "usuario3",
       "email": "outlook@outlook.com",
@@ -24,6 +18,20 @@
       "username": "a",
       "password": "a",
       "id": 4
+    },
+    {
+      "name": "",
+      "email": "blinblin@gmail.com",
+      "username": "bbiblin",
+      "password": "belendiaz",
+      "id": 5
+    },
+    {
+      "name": "",
+      "email": "monogamiaomuerte@hotmail.com",
+      "username": "alanteamo",
+      "password": "elpepe",
+      "id": 6
     }
   ]
 }

@@ -1,8 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { StorageService } from 'src/app/servicios/storage.service';
-
-import { ToastController } from '@ionic/angular';
+import { Component } from '@angular/core';
+import { Router, NavigationExtras } from '@angular/router';
 import { AutenticadorService } from 'src/app/servicios/autenticador.service';
 
 @Component({
@@ -11,43 +8,47 @@ import { AutenticadorService } from 'src/app/servicios/autenticador.service';
   styleUrls: ['./registro.page.scss'],
 })
 export class RegistroPage {
-
   user = {
     username: '',
     email: '',
     password: '',
   };
 
+  mensaje = '';
 
-  constructor(
-    private auth: AutenticadorService,
-    private router: Router,
-    private toastController: ToastController
-  ) { }
+  constructor(private router: Router, private auth: AutenticadorService) {}
 
-  ngOnInit() { }
+  validarRegistro() {
+    this.mensaje = '';
 
-  async validarRegistro() {
+    if (!this.user.username || !this.user.email || !this.user.password) {
+      this.mensaje = 'Todos los campos son obligatorios';
+      return;
+    }
+
     this.auth
-      .registro(this.user)
-      .then((res) => {
-        this.router.navigate(['/bienvenida']);
-        return this.toastController.create({
-          message: 'Registrado con éxito',
-          duration: 5000,
-          position: 'bottom',
-        })
+      .registro(this.user, this.user.email, this.user.password)
+      .then((success) => {
+        if (success) {
+          this.mensaje = 'Registro exitoso';
+
+          let navigationExtras: NavigationExtras = {
+            state: {
+              username: this.user.username,
+              email: this.user.email,
+              password: this.user.password,
+            },
+          };
+
+          this.router.navigate(['/bienvenida'], navigationExtras);
+        } else {
+          this.mensaje =
+            'Error en las credenciales. Por favor, inténtalo de nuevo.';
+        }
       })
-      .then((toast) => toast.present())
       .catch((error) => {
-        return this.toastController
-          .create({
-            message: 'Error al registrar',
-            duration: 5000,
-            position: 'bottom',
-          })
-          .then((toast) => toast.present());
+        console.log('Error en el proceso de registro:', error);
+        this.mensaje = 'Error en el sistema. Inténtalo más tarde.';
       });
   }
 }
-

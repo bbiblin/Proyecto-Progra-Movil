@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
 import { StorageService } from './storage.service';
 
-
 @Injectable({
   providedIn: 'root',
 })
 export class AutenticadorService {
-
   estadoConexion: boolean = false;
 
   constructor(private storage: StorageService) {}
@@ -27,7 +25,6 @@ export class AutenticadorService {
         return false;
       });
   }
-  
 
   login(user: String, pass: String): boolean {
     if (user == 'usuario1' && pass == 'pass123') {
@@ -47,15 +44,20 @@ export class AutenticadorService {
     return this.estadoConexion;
   }
 
-  async registro(user: any):Promise<boolean> {
-    return this.storage.set(user.username, user).then((res: any) => {
-        if (res != null) {
-          return true;
-        } else{
-          return false;
-        }
+  async registro(user: any, email: string, password: string): Promise<boolean> {
+    if (!user || !user.username || !email || !password) {
+      console.log('Datos incompletos para el registro.');
+      return false;
+    }
+
+    return this.storage
+      .set(user.username, user)
+      .then(() => {
+        // Si no hubo errores, asumimos que el almacenamiento fue exitoso
+        return true;
       })
       .catch((error) => {
+        console.log('Error en el sistema al registrar usuario: ', error);
         return false;
       });
   }

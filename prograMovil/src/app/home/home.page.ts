@@ -9,7 +9,6 @@ import { AutenticadorService } from '../servicios/autenticador.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-
   ngAfterContentInit() {
     this.animarboton();
   }
@@ -29,34 +28,18 @@ export class HomePage {
     private router: Router,
     private animationController: AnimationController,
     private auth: AutenticadorService
-  ) { }
+  ) {}
 
   validar() {
-    this.auth
-      .loginDB(this.user.username, this.user.password)
-      .then((res) => {
-        this.mensaje = 'Conexion exitosa';
-        let navigationExtras: NavigationExtras = {
-          state: {
-            username: this.user.username,
-            password: this.user.password,
-          },
-        };
-        setTimeout(() => {
-          this.router.navigate(['/perfil'], navigationExtras);
-          this.mensaje = '';
-        }, 3000);
-      })
-      .catch((error) => {
-        this.mensaje = 'Error en las credenciales';
-      });
-  }
+    if (!this.user.username || !this.user.password) {
+      this.mensaje = 'Por favor ingrese su usuario y contraseña';
+      return; // Salimos de la función si hay campos vacíos
+    }
 
-  /*
-  validarLogin() {
+    // Intentar el login solo si los campos están completos
     if (this.auth.login(this.user.username, this.user.password)) {
-      //Funciona
-      this.mensaje = 'Conexion exitosa';
+      // Si el login es exitoso
+      this.mensaje = 'Conexión exitosa';
       let navigationExtras: NavigationExtras = {
         state: {
           username: this.user.username,
@@ -64,17 +47,13 @@ export class HomePage {
         },
       };
 
-      // setTimeout = permite generar un pequeño delay para realizar la accion
-
       this.router.navigate(['/bienvenida'], navigationExtras);
-      this.mensaje = "";
-
+      this.mensaje = '';
     } else {
+      // Si el login falla
       this.mensaje = 'Error en las credenciales';
-      //No funciona
     }
   }
-  */
 
   animarboton() {
     const button = document.querySelector('#boton');
@@ -87,12 +66,11 @@ export class HomePage {
         .keyframes([
           { offset: 0, transform: 'scale(1)' },
           { offset: 0.5, transform: 'scale(1.1)' },
-          { offset: 1, transform: 'scale(1)' }
+          { offset: 1, transform: 'scale(1)' },
         ]);
       buttonAnimation.play();
     } else {
       console.error('Button element not found');
     }
   }
-
-}  
+}

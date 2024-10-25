@@ -22,7 +22,7 @@
           </div>
 
           <div class="correo">
-            <ion-input [(ngModel)]="user.email"label="Correo" label-placement="floating" fill="outline"
+            <ion-input [(ngModel)]="user.email" label="Correo" label-placement="floating" fill="outline"
               placeholder="Ingrese su correo"></ion-input>
           </div>
 
@@ -36,6 +36,10 @@
             <ion-loading trigger="boton" message="Loading..." [duration]="1000" spinner="circles"></ion-loading>
           </div>
 
+          <div style="text-align:center; margin-top: 10px;">
+            <p *ngIf="mensaje">{{ mensaje }}</p> 
+          </div>
+
         </ion-list>
       </ion-card-content>
     </ion-card>
@@ -44,4 +48,3 @@
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </ion-content>
-
