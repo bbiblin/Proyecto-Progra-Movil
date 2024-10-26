@@ -26,29 +26,33 @@ export class RegistroPage {
       return;
     }
 
-    this.auth
-      .registro(this.user, this.user.email, this.user.password)
-      .then((success) => {
-        if (success) {
-          this.mensaje = 'Registro exitoso';
-
-          let navigationExtras: NavigationExtras = {
-            state: {
-              username: this.user.username,
-              email: this.user.email,
-              password: this.user.password,
-            },
-          };
-
-          this.router.navigate(['/bienvenida'], navigationExtras);
+    this.auth.verificarUsuarioExistente(this.user.email).subscribe(
+      (usuarioExiste) => {
+        if (usuarioExiste) {
+          this.mensaje = 'El usuario ya existe. Intenta con otro correo electrónico.';
         } else {
-          this.mensaje =
-            'Error en las credenciales. Por favor, inténtalo de nuevo.';
+          this.auth.registro(this.user).subscribe(
+            () => {
+              this.mensaje = 'Registro exitoso';
+              let navigationExtras: NavigationExtras = {
+                state: {
+                  username: this.user.username,
+                  email: this.user.email,
+                },
+              };
+              this.router.navigate(['/bienvenida'], navigationExtras);
+            },
+            (error) => {
+              console.log('Error en el proceso de registro:', error);
+              this.mensaje = 'Error en el sistema. Inténtalo más tarde.';
+            }
+          );
         }
-      })
-      .catch((error) => {
-        console.log('Error en el proceso de registro:', error);
+      },
+      (error) => {
+        console.log('Error en la verificación del usuario:', error);
         this.mensaje = 'Error en el sistema. Inténtalo más tarde.';
-      });
+      }
+    );
   }
 }

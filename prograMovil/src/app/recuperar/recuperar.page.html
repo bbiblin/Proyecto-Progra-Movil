@@ -18,12 +18,25 @@
     <ion-card-content>
       <ion-list>
         <div class="user">
-          <ion-input label="Usuario" label-placement="floating" fill="outline"
-            placeholder="Ingrese su usuario"></ion-input>
+          <ion-input
+            label="Usuario"
+            label-placement="floating"
+            fill="outline"
+            [(ngModel)]="username"
+            placeholder="Ingrese su usuario"
+          ></ion-input>
         </div>
 
         <div class="boton" style="text-align: center">
-          <ion-button [routerLink]="['/home']">Ingresar</ion-button><br />
+          <ion-button (click)="recuperarContrasena()">mostrar contraseña</ion-button><br />
+          <ion-button (click)="volverAlInicio()">Volver al Inicio</ion-button>
+        </div>
+
+        <div *ngIf="mensaje" style="color: red; text-align: center">
+          {{ mensaje }}
+        </div>
+        <div *ngIf="password" style="text-align: center; color: green">
+          Su contraseña es: {{ password }}
         </div>
       </ion-list>
     </ion-card-content>

@@ -1,37 +1,10 @@
 {
   "users": [
     {
-      "id": 1,
-      "username": "usuario1",
-      "email": "correo@correo.cl",
-      "password": "pass1234"
-    },
-    {
-      "id": 3,
-      "username": "usuario3",
-      "email": "outlook@outlook.com",
-      "password": "contraseña"
-    },
-    {
-      "name": "",
-      "email": "a",
-      "username": "a",
-      "password": "a",
-      "id": 4
-    },
-    {
-      "name": "",
-      "email": "blinblin@gmail.com",
-      "username": "bbiblin",
-      "password": "belendiaz",
-      "id": 5
-    },
-    {
-      "name": "",
-      "email": "monogamiaomuerte@hotmail.com",
-      "username": "alanteamo",
-      "password": "elpepe",
-      "id": 6
+      "username": "user1",
+      "email": "user1@email.com",
+      "password": "pass",
+      "id": 1
     }
   ]
 }

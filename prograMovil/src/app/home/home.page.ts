@@ -13,7 +13,6 @@ export class HomePage {
     this.animarboton();
   }
 
-  /*obj para el usuario */
   user = {
     username: '',
     password: '',
@@ -31,28 +30,31 @@ export class HomePage {
   ) {}
 
   validar() {
+    this.mensaje = '';
+    
     if (!this.user.username || !this.user.password) {
       this.mensaje = 'Por favor ingrese su usuario y contraseña';
-      return; // Salimos de la función si hay campos vacíos
+      return;
     }
 
-    // Intentar el login solo si los campos están completos
-    if (this.auth.login(this.user.username, this.user.password)) {
-      // Si el login es exitoso
-      this.mensaje = 'Conexión exitosa';
-      let navigationExtras: NavigationExtras = {
-        state: {
-          username: this.user.username,
-          password: this.user.password,
-        },
-      };
-
-      this.router.navigate(['/bienvenida'], navigationExtras);
-      this.mensaje = '';
-    } else {
-      // Si el login falla
-      this.mensaje = 'Error en las credenciales';
-    }
+    this.auth.login(this.user.username, this.user.password).subscribe(
+      (loginExitoso) => {
+        if (loginExitoso) {
+          let navigationExtras: NavigationExtras = {
+            state: {
+              username: this.user.username,
+            },
+          };
+          this.router.navigate(['/bienvenida'], navigationExtras);
+        } else {
+          this.mensaje = 'Usuario o contraseña incorrectos';
+        }
+      },
+      (error) => {
+        console.log('Error en el proceso de inicio de sesión:', error);
+        this.mensaje = 'Error en el sistema. Inténtalo más tarde.';
+      }
+    );
   }
 
   animarboton() {

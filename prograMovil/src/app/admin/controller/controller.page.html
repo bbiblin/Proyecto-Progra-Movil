@@ -10,25 +10,25 @@
 <ion-content [fullscreen]="true">
 
   <div class="addUser">
-  <ion-button (click)="toggleFormulario()">Agregar usuario</ion-button>
- </div>
+    <ion-button (click)="toggleFormulario()">Agregar usuario</ion-button>
+  </div>
 
- <div class="userList">
-  <ion-list>
-    <ion-item *ngFor="let user of users">
-      <ion-label>
-        <h5>{{ user.username }}</h5>
-        <p>Email: {{ user.email }}</p>
-      </ion-label>
-      <div class="botones">
-        <ion-button color="warning" (click)="seleccionarUsuario(user)">Modificar</ion-button>
-        <ion-button color="danger" (click)="eliminarUsuario(user.id)">Eliminar</ion-button>
-      </div>
-    </ion-item>
-  </ion-list>
-</div>
+  <div class="userList">
+    <ion-list>
+      <ion-item *ngFor="let user of users">
+        <ion-label>
+          <h5>{{ user.username }}</h5>
+          <p>Email: {{ user.email }}</p>
+        </ion-label>
+        <div class="botones">
+          <ion-button color="warning" (click)="seleccionarUsuario(user)">Modificar</ion-button>
+          <ion-button color="danger" (click)="eliminarUsuario(user.id)">Eliminar</ion-button>
+        </div>
+      </ion-item>
+    </ion-list>
+  </div>
 
-  <ion-card *ngIf="mostrarFormulario">
+  <ion-card *ngIf="mostrarFormulario" #formulario>
     <ion-card-header>
       <ion-card-title>Crear Usuario</ion-card-title>
     </ion-card-header>
@@ -49,7 +49,9 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-card *ngIf="usuarioSeleccionado">
+
+
+  <ion-card *ngIf="usuarioSeleccionado" #formulario2>
     <ion-card-header>
       <ion-card-title>Modificar Usuario</ion-card-title>
     </ion-card-header>
@@ -71,5 +73,3 @@
     </ion-card-content>
   </ion-card>
 </ion-content>
-
-

@@ -1,31 +1,32 @@
 import { Injectable } from '@angular/core';
-import { StorageService } from './storage.service';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root',
 })
 export class AutenticadorService {
+  apiURL = 'http://localhost:3000/users';
+
   estadoConexion: boolean = false;
+  private isLoggedIn = false;
 
-  constructor(private storage: StorageService) {}
+  constructor(private http: HttpClient) {}
 
-  loginDB(user: string, pass: String): Promise<boolean> {
-    return this.storage
-      .get(user)
-      .then((res) => {
-        if (res.password == pass) {
-          this.estadoConexion = true;
-          return true;
-        } else {
-          return false;
-        }
+  login(username: string, password: string): Observable<boolean> {
+    return this.http.get<any[]>(this.apiURL).pipe(
+      map((users) => {
+        const user = users.find(
+          (u) => u.username === username && u.password === password
+        );
+        this.isLoggedIn = !!user; // Actualiza el estado de sesión
+        return this.isLoggedIn;
       })
-      .catch((error) => {
-        console.log('Error en el sistema: ' + error);
-        return false;
-      });
+    );
   }
 
+  /*
   login(user: String, pass: String): boolean {
     if (user == 'usuario1' && pass == 'pass123') {
       this.estadoConexion = true;
@@ -34,6 +35,11 @@ export class AutenticadorService {
 
     this.estadoConexion = false;
     return false;
+  }
+  */
+
+  isAuthenticated(): boolean {
+    return this.isLoggedIn;
   }
 
   logout() {
@@ -44,21 +50,21 @@ export class AutenticadorService {
     return this.estadoConexion;
   }
 
-  async registro(user: any, email: string, password: string): Promise<boolean> {
-    if (!user || !user.username || !email || !password) {
-      console.log('Datos incompletos para el registro.');
-      return false;
-    }
-
-    return this.storage
-      .set(user.username, user)
-      .then(() => {
-        // Si no hubo errores, asumimos que el almacenamiento fue exitoso
-        return true;
+  verificarUsuarioExistente(email: string): Observable<boolean> {
+    return this.http.get<any[]>(this.apiURL).pipe(
+      map((users) => {
+        return users.some((user) => user.email === email);
       })
-      .catch((error) => {
-        console.log('Error en el sistema al registrar usuario: ', error);
-        return false;
-      });
+    );
+  }
+
+  obtenerUsuarioPorNombre(username: string): Observable<any> {
+    return this.http.get<any[]>(this.apiURL).pipe(
+      map((users) => users.find((user) => user.username === username))
+    );
+  }
+
+  registro(user: any): Observable<any> {
+    return this.http.post(this.apiURL, user);
   }
 }

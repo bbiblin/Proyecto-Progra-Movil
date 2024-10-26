@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { APIControllerService } from 'src/app/servicios/apicontroller.service';
 @Component({
   selector: 'app-controller',
@@ -11,6 +11,10 @@ export class ControllerPage implements OnInit {
   nuevoUsuario: any = { name: '', email: '' };
   usuarioSeleccionado: any = null;
   mostrarFormulario: boolean = false;
+
+  @ViewChild('formulario', { read: ElementRef }) formularioElement!: ElementRef;
+
+  @ViewChild('formulario2', { read: ElementRef }) formulario2Element!: ElementRef;
 
   constructor(private api: APIControllerService) { }
 
@@ -30,6 +34,16 @@ export class ControllerPage implements OnInit {
 
   seleccionarUsuario(usuario: any) {
     this.usuarioSeleccionado = { ...usuario };
+    if (this.usuarioSeleccionado) {
+      setTimeout(() => {
+        if (this.formulario2Element?.nativeElement) {
+          this.formulario2Element.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          console.warn("El formulario no se ha podido encontrar en el DOM.");
+        }
+      }, 200);
+    }
+
   }
 
   modificarUsuario(id: any) {
@@ -81,7 +95,23 @@ export class ControllerPage implements OnInit {
     );
   }
 
+  /*
   toggleFormulario() {
     this.mostrarFormulario = !this.mostrarFormulario;
+  }
+  */
+
+  toggleFormulario() {
+    this.mostrarFormulario = !this.mostrarFormulario;
+
+    if (this.mostrarFormulario) {
+      setTimeout(() => {
+        if (this.formularioElement?.nativeElement) {
+          this.formularioElement.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          console.warn("El formulario no se ha podido encontrar en el DOM.");
+        }
+      }, 200);
+    }
   }
 }
