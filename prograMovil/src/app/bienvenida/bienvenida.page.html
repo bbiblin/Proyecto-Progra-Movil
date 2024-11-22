@@ -6,7 +6,19 @@
 
 
 <ion-content>
-  <div >
-  <h2 id="bienvenida">Bienvenido/a, {{ username }}</h2>
-</div>
+  <div>
+    <h2 id="bienvenida">Bienvenido/a, {{ username }}</h2>
+  </div>
+
+  <ion-button (click)="openBarcodeScanner()">
+    Escanear Código QR
+  </ion-button>
+
+  <ion-item *ngIf="scanResult">
+    <ion-label>
+      <p>Resultado scanner</p>
+      <div>{{scanResult}}</div>
+    </ion-label>
+  </ion-item>
+
 </ion-content>

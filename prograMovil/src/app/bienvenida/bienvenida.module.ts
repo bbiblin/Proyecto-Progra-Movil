@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { BienvenidaPageRoutingModule } from './bienvenida-routing.module';
 
 import { BienvenidaPage } from './bienvenida.page';
+import { BarcodeScanningModalComponent } from './barcode-scanning-modal.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { BienvenidaPage } from './bienvenida.page';
     IonicModule,
     BienvenidaPageRoutingModule
   ],
-  declarations: [BienvenidaPage]
+  declarations: [BienvenidaPage, BarcodeScanningModalComponent]
 })
 export class BienvenidaPageModule {}
