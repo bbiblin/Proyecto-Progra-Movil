@@ -40,8 +40,8 @@ export class BienvenidaPage implements OnInit {
   async openBarcodeScanner() {
     const modal = await this.modalController.create({
       component: BarcodeScanningModalComponent,
-      //cssClass: 'barcode-scanning-modal',
-      //showBackdrop: false,
+      cssClass: 'barcode-scanning-modal',
+      showBackdrop: false,
       componentProps: {
         formats: ['QR_CODE'],
         LensFacing: LensFacing.Back

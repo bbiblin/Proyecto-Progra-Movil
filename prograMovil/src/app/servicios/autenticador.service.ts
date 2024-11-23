@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators'
 })
 export class AutenticadorService {
   //apiURL = 'http://localhost:3000/users';
-  apiURL = "https://xckfzcmm-3000.brs.devtunnels.ms";
+  apiURL = "https://xckfzcmm-3000.brs.devtunnels.ms/users";
 
   estadoConexion: boolean = false;
   private isLoggedIn = false;
