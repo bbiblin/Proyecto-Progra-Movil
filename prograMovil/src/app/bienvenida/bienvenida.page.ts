@@ -56,4 +56,16 @@ export class BienvenidaPage implements OnInit {
       this.scanResult = data?.barcode?.displayValue;
     }
   }
+
+  enviarEmail() {
+    const email = 'ejemplo@email.com';
+    const subject = 'Asistencia a clases';
+    const body = encodeURIComponent(this.scanResult);
+
+    const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${body}`;
+
+    window.location.href = mailtoUrl;
+  }
+
+
 }

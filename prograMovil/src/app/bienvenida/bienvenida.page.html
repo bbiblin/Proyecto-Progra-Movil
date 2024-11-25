@@ -12,11 +12,14 @@
       <h3>Registra tu asistencia escaneando el QR que tu profesor proyectará</h3>
     </div>
 
-    <!-- Botón de Escaneo -->
+    <!-- Botón de Escaneo y envío de mail -->
     <div class="scanner-section">
       <ion-button expand="block" shape="round" class="scanner-button" (click)="openBarcodeScanner()">
         Escanear Código QR
       </ion-button>
+
+      <ion-button (click)="enviarEmail()" expand="block" shape="round" class="scanner-button">Enviar Email</ion-button>
+
     </div>
 
     <!-- Resultado del Escáner -->
