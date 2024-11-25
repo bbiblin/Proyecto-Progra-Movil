@@ -1,24 +1,30 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Inicio</ion-title>
+    <ion-title>Registra tu asistencia</ion-title>
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content>
-  <div>
-    <h2 id="bienvenida">Bienvenido/a, {{ username }}</h2>
+  <div class="container">
+    <!-- Bienvenida -->
+    <div class="welcome-section">
+      <h2>Bienvenido/a, {{ username }}</h2>
+      <h3>Registra tu asistencia escaneando el QR que tu profesor proyectará</h3>
+    </div>
+
+    <!-- Botón de Escaneo -->
+    <div class="scanner-section">
+      <ion-button expand="block" shape="round" class="scanner-button" (click)="openBarcodeScanner()">
+        Escanear Código QR
+      </ion-button>
+    </div>
+
+    <!-- Resultado del Escáner -->
+    <ion-item class="result-section" *ngIf="scanResult">
+      <ion-label>
+        <p class="result-title">Resultado del Escáner</p>
+        <div class="result-content">{{ scanResult }}</div>
+      </ion-label>
+    </ion-item>
   </div>
-
-  <ion-button (click)="openBarcodeScanner()">
-    Escanear Código QR
-  </ion-button>
-
-  <ion-item *ngIf="scanResult">
-    <ion-label>
-      <p>Resultado scanner</p>
-      <div>{{scanResult}}</div>
-    </ion-label>
-  </ion-item>
-
 </ion-content>
