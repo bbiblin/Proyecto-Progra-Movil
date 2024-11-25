@@ -2,35 +2,9 @@
   "users": [
     {
       "id": 1,
-      "username": "usuario1",
+      "username": "user",
       "email": "correo@correo.cl",
-      "password": "pass1234"
-    },
-    {
-      "id": 2,
-      "username": "usuario2",
-      "email": "email@gmail.com",
-      "password": "password1234"
-    },
-    {
-      "id": 3,
-      "username": "usuario3",
-      "email": "outlook@outlook.com",
-      "password": "contraseña"
-    },
-    {
-      "name": "",
-      "email": "a",
-      "username": "a",
-      "password": "a",
-      "id": 4
-    },
-    {
-      "name": "",
-      "email": "lucero@duocuc.cl",
-      "username": "lucero",
-      "password": "lucero",
-      "id": 5
+      "password": "pass"
     }
   ]
 }
