@@ -5,6 +5,50 @@
       "username": "user",
       "email": "correo@correo.cl",
       "password": "pass"
+    },
+    {
+      "username": "lucero",
+      "email": "luc.leyva@duocuc.cl",
+      "password": "lucero",
+      "id": 2
+    },
+    {
+      "username": "blin",
+      "email": "belendiazfuentes2021@gmail.com",
+      "password": "blinbelen",
+      "id": 3
+    }
+  ],
+  "asistencias": [
+    {
+      "username": "user",
+      "idAsistencia": "http://commons.wikimedia.org/",
+      "id": 1
+    },
+    {
+      "username": "user",
+      "idAsistencia": "http://commons.wikimedia.org/",
+      "id": 2
+    },
+    {
+      "username": "user",
+      "idAsistencia": "http://commons.wikimedia.org/",
+      "id": 3
+    },
+    {
+      "username": "user",
+      "idAsistencia": "http://commons.wikimedia.org/",
+      "id": 4
+    },
+    {
+      "username": "lucero",
+      "idAsistencia": "https://wlhttp.sec.cl/rnii/public/licencia/qr?o=c4fd32adecf452e700499511c0231f86",
+      "id": 5
+    },
+    {
+      "username": "blin",
+      "idAsistencia": "http://commons.wikimedia.org/",
+      "id": 6
     }
   ]
 }

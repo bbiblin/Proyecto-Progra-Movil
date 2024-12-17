@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Admin Dashboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Buscar Asistencias</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-input
+          label="Nombre de usuario"
+          label-placement="floating"
+          placeholder="Ingrese el nombre de usuario"
+          [(ngModel)]="username"
+        ></ion-input>
+      </ion-item>
+      <ion-button expand="block" color="primary" (click)="buscarAsistencias()">
+        Buscar
+      </ion-button>
+
+      <!-- Mensaje de feedback -->
+      <p *ngIf="mensaje" style="color: red; text-align: center">
+        {{ mensaje }}
+      </p>
+
+      <!-- Lista de asistencias -->
+      <ion-list *ngIf="asistencias.length > 0">
+        <ion-list-header>
+          <strong>ID de Asistencias</strong>
+        </ion-list-header>
+        <ion-item *ngFor="let id of asistencias">
+          {{ id }}
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+

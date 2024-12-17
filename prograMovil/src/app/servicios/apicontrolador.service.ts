@@ -23,9 +23,11 @@ export class ApicontroladorService {
   updateUser(id: string, data: any): Observable<any>{
     return this.http.put(this.apiURL + "/users/" + id, data);
   }
-  
   deleteUser(id: string): Observable<any> {
     return this.http.delete(this.apiURL + "/users/" + id);
+  }
+  getAsistencias(): Observable<any> {
+    return this.http.get(this.apiURL + '/asistencias');
   }
 }
 

@@ -35,10 +35,13 @@ const routes: Routes = [
     loadChildren: () => import('./admin/controller/controller.module').then( m => m.ControllerPageModule)
   },
   {
+    path: 'admin-dashboard',
+    loadChildren: () => import('./admin-dashboard/admin-dashboard.module').then( m => m.AdminDashboardPageModule)
+  },
+  {
   path: '**',
     loadChildren: () => import('./error/error.module').then(m => m.ErrorPageModule)
   },
-
 ];
 
 @NgModule({

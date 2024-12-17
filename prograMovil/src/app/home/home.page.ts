@@ -37,6 +37,12 @@ export class HomePage {
       return;
     }
 
+    // if (this.user.username === 'admin' && this.user.password === 'admin') {
+    //   this.mensaje = 'Admin';
+    //   this.router.navigate(['/admin-dashboard']);
+    //   return;
+    // }
+
     this.auth.login(this.user.username, this.user.password).subscribe(
       (loginExitoso) => {
         if (loginExitoso) {
@@ -55,6 +61,11 @@ export class HomePage {
         this.mensaje = 'Error en el sistema. Inténtalo más tarde.';
       }
     );
+  }
+
+  asistencias() {
+    this.router.navigate(['/admin-dashboard']);
+      return;
   }
 
   animarboton() {
